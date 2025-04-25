@@ -1,16 +1,8 @@
-	<name>IVDevs Identity</name>
-	<description>Identity for IVDevs RolePlay Framework</description>
-    <creator>IVDevs</creator>
-    <version>1.0.0</version>
-    <logo>https://happinessmp.net/img/banner.jpg</logo>
-    <tags>
-		  <tag>Gamemode</tag>
-    </tags>
-    <meta type="lua">
-        <script type="client" src="client/main.lua" />
-        <script type="server" src="server/main.lua" />
+<meta type="lua">
+    <script type="client" src="client/main.lua" />
+    <script type="server" src="server/main.lua" />
 
-        <file src="html/index.html" />
-	    <file src="html/script.js" />
-        <file src="html/style.css" />
-    </meta>
+    <file src="html/index.html" />
+	<file src="html/script.js" />
+    <file src="html/style.css" />
+</meta>
