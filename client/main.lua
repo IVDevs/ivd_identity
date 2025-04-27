@@ -1,19 +1,15 @@
-local myIdentity = {}
+local IdentityGui
 
 Events.Subscribe("ivd_identity:showRegisterIdentity", function(t)
-    local w, h = Game.GetScreenResolution()
-    local IdentityGui = WebUI.Create("file://ivd_identity/html/index.html", w, h, true)
-    CreateGui(true)
+    local w, h = Game.GetScreenResolution() --Found some issues with this. Soon will be fixed :)
+    IdentityGui = WebUI.Create("file://ivd_identity/html/index.html", 1920, 1080, true)
+    WebUI.SetFocus(IdentityGui)
 end, true)
 
-function CreateGui(state)
-    if state then
-        WebUI.SetFocus(IdentityGui)
-    else
-        WebUI.Destroy(IdentityGui)
-        WebUI.SetFocus(-1)
-    end
-end
+Events.Subscribe("ivd_identity:notNewPlayer", function(t)
+    WebUI.Destroy(IdentityGui)
+    WebUI.SetFocus(-1)
+end, true)
 
 Events.Subscribe("ivd_identity:register", function(firstname, lastname, dateofbirth, sex, height)
     local reason = ""
@@ -38,7 +34,8 @@ Events.Subscribe("ivd_identity:register", function(firstname, lastname, dateofbi
 
     if reason == "" then
         local RocstarID = Player.GetRockstarID()
-        CreateGui(false)
+        WebUI.Destroy(IdentityGui)
+        WebUI.SetFocus(-1)
         Events.CallRemote("ivd_identity:setIdentity", { RocstarID, firstname, lastname, dateofbirth, sex, height })
     else
         Chat.AddMessage(reason)
